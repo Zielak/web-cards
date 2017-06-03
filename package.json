@@ -13,9 +13,11 @@
   "license": "ISC",
   "dependencies": {
     "@material/animation": "^0.2.3",
+    "@material/drawer": "^0.4.3",
     "@material/toolbar": "^0.3.3",
     "immutable": "^3.8.1",
     "material-components-web": "^0.12.1",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },

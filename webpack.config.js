@@ -34,5 +34,6 @@ module.exports = {
 	plugins: [new HtmlWebpackPlugin({
 		title: 'Cards game',
 		template: './template/index.ejs'
-	})]
+	})],
+	devtool: 'inline-source-map',
 };
