@@ -2,6 +2,15 @@
   "name": "web-cards",
   "version": "0.1.0",
   "description": "Online cards game test",
+  "license": "ISC",
+  "author": {
+    "name": "Darek Greenly",
+    "url": "http://darekgreenly.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zielak/web-cards.git"
+  },
   "main": "index.js",
   "scripts": {
     "start": "webpack --config webpack.config.js",
@@ -9,12 +18,11 @@
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Darek Greenly",
-  "license": "ISC",
   "dependencies": {
     "@material/animation": "^0.2.3",
     "@material/drawer": "^0.4.3",
     "@material/toolbar": "^0.3.3",
+    "eventemitter3": "^2.0.3",
     "immutable": "^3.8.1",
     "material-components-web": "^0.12.1",
     "prop-types": "^15.5.10",
