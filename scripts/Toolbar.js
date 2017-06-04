@@ -102,7 +102,11 @@ class Toolbar extends PureComponent {
 				</div>*/}
 				<div className="mdc-toolbar__row">
 					<section className="mdc-toolbar__section mdc-toolbar__section--align-start">
-						<a href="#" className="material-icons">menu</a>
+						<a
+							href="#"
+							className="material-icons"
+							onClick={event=>this.props.menuClick(event)}
+						>menu</a>
 						<span ref="title" className="mdc-toolbar__title">Title</span>
 					</section>
 					<section className="mdc-toolbar__section mdc-toolbar__section--align-end">
