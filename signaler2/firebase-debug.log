@@ -1,0 +1,28 @@
+[debug] [2017-06-05T22:24:32.012Z] ----------------------------------------------------------------------
+[debug] [2017-06-05T22:24:32.015Z] Command:      C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\bin\firebase serve
+[debug] [2017-06-05T22:24:32.016Z] CLI Version:  3.9.1
+[debug] [2017-06-05T22:24:32.016Z] Platform:     win32
+[debug] [2017-06-05T22:24:32.016Z] Node Version: v6.9.4
+[debug] [2017-06-05T22:24:32.017Z] Time:         Tue Jun 06 2017 00:24:32 GMT+0200 (Central European Daylight Time)
+[debug] [2017-06-05T22:24:32.017Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-06-05T22:24:32.032Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-06-05T22:24:32.033Z] > authorizing via signed-in user
+[debug] [2017-06-05T22:24:32.035Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/webrtcsignaler  
+ Tue Jun 06 2017 00:24:32 GMT+0200 (Central European Daylight Time)
+[debug] [2017-06-05T22:24:32.969Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-05T22:24:32.970Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/webrtcsignaler/tokens  
+ Tue Jun 06 2017 00:24:32 GMT+0200 (Central European Daylight Time)
+[debug] [2017-06-05T22:24:33.635Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\dev\web-cards\signaler2'...
+[info] 
+[debug] [2017-06-05T22:24:33.639Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/webrtcsignaler  
+ Tue Jun 06 2017 00:24:33 GMT+0200 (Central European Daylight Time)
+[debug] [2017-06-05T22:24:34.491Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-05T22:24:34.491Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/964935208268/clients/_:getWebAppConfig  
+ Tue Jun 06 2017 00:24:34 GMT+0200 (Central European Daylight Time)
+[debug] [2017-06-05T22:24:35.065Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
