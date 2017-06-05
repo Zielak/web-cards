@@ -2,9 +2,9 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 
-import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable';
+import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable'
 
-import {getCorrectEventName} from '@material/animation/dist/mdc.animation';
+import {getCorrectEventName} from '@material/animation/dist/mdc.animation'
 import {MDCToolbar, MDCToolbarFoundation} from '@material/toolbar/dist/mdc.toolbar'
 import '@material/toolbar/dist/mdc.toolbar.css'
 
@@ -103,10 +103,14 @@ class Toolbar extends PureComponent {
 				<div className="mdc-toolbar__row">
 					<section className="mdc-toolbar__section mdc-toolbar__section--align-start">
 						<a
-							href="#"
 							className="material-icons"
-							onClick={event=>this.props.menuClick(event)}
-						>menu</a>
+							onClick={event=>{
+								event.preventDefault()
+								this.props.events.emit('menu.clicked')
+							}}
+						>
+							<span className="material-icons">menu</span>
+						</a>
 						<span ref="title" className="mdc-toolbar__title">Title</span>
 					</section>
 					<section className="mdc-toolbar__section mdc-toolbar__section--align-end">

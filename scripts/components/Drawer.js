@@ -2,10 +2,10 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 
+import EventEmitter from 'eventemitter3'
 import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable'
 
 import {MDCTemporaryDrawer, MDCTemporaryDrawerFoundation, util} from '@material/drawer'
-
 
 class Drawer extends PureComponent {
 
@@ -70,6 +70,16 @@ class Drawer extends PureComponent {
 
 	}
 
+	registerEventListeners(){
+		const e = this.props.events
+
+		e.on('menu.clicked', () => this.open = !this.open)
+	}
+
+	unregisterEventListeners(){
+		const e = this.props.events
+	}
+
 	get open() {
 		return this.foundation.isOpen();
 	}
@@ -98,9 +108,16 @@ class Drawer extends PureComponent {
 				open={this.props.open}
 			>
 				<nav ref="drawer" className="mdc-temporary-drawer__drawer mdc-typography">
-					<div className="mdc-temporary-drawer__toolbar-spacer"></div>
+					<header className="mdc-temporary-drawer__header">
+						<div className="mdc-temporary-drawer__header-content">
+							<h1 className="mdc-typography--display2">
+								Siema!
+							</h1>
+						</div>
+					</header>
+					{/*<div className="mdc-temporary-drawer__toolbar-spacer"></div>*/}
 					<div className="mdc-temporary-drawer__content">
-						<nav id="icon-with-text-demo" className="mdc-list">
+						<nav id="" className="mdc-list">
 							<a className="mdc-list-item mdc-temporary-drawer--selected" href="#">
 								<i className="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
 							</a>
@@ -116,24 +133,27 @@ class Drawer extends PureComponent {
 
 	componentDidMount() {
 		this.foundation.init();
+		this.registerEventListeners();
 	}
 	componentWillUnmount() {
 		this.foundation.destroy();
+		this.unregisterEventListeners()
 	}
 
 	// Here we synchronize the internal state of the UI component
 	// based on what the user has specified.
-	componentWillReceiveProps(props) {
-		if (props.open !== this.props.open) {
-			this.setState({open: props.open});
-			this.open = props.open
-		}
-	}
+	// componentWillReceiveProps(props) {
+	// 	if (props.open !== this.props.open) {
+	// 		this.setState({open: props.open});
+	// 		this.open = props.open
+	// 	}
+	// }
 
 }
 
 Drawer.propTypes = {
 	open: PropTypes.bool,
+	events: PropTypes.instanceOf(EventEmitter)
 }
 
 Drawer.defaultProps = {

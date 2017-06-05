@@ -2,8 +2,12 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 
-import Toolbar from './Toolbar'
-import Drawer from './Drawer'
+import {Card, List, Toolbar, Drawer} from './components'
+
+import EventEmitter from 'eventemitter3'
+import Connection from './connection'
+
+const events = new EventEmitter()
 
 class App extends PureComponent {
 
@@ -13,19 +17,11 @@ class App extends PureComponent {
 				fixed: true,
 				waterfall: true,
 			},
-			drawer: {
-				open: false,
-			}
+			responses: ['test', 'two'],
+			// drawer: {
+			// 	open: false,
+			// }
 		}
-	}
-
-	handleMenuClick(event){
-		event.preventDefault()
-		this.setState(prev => ({
-			drawer: {
-				open: !prev.drawer.open,
-			}
-		}))
 	}
 
 	render (){
@@ -36,19 +32,45 @@ class App extends PureComponent {
 					fixed={toolbar.fixed}
 					fixedAdjustRef='main'
 					waterfall={toolbar.waterfall}
-					menuClick={event=>this.handleMenuClick(event)}
+					events={events}
 				/>
 				<Drawer
-					open={drawer.open}
+					events={events}
 				/>
-				<h1>IT WORKS</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat arcu vitae metus interdum sodales. Nunc nulla leo, porttitor nec neque id, dapibus feugiat massa. Suspendisse mattis ipsum ut tempus accumsan. Curabitur congue nunc ac erat aliquet, ac accumsan tortor eleifend. Praesent purus nisl, hendrerit eget justo vitae, tempus elementum orci. Vestibulum id arcu luctus, congue velit non, efficitur risus. Aliquam odio lectus, placerat ut eros vitae, condimentum mollis magna. Maecenas metus elit, vehicula interdum velit quis, scelerisque hendrerit erat. Suspendisse cursus, est nec luctus pellentesque, tellus ipsum consectetur purus, sit amet finibus lectus ipsum eget elit. Suspendisse nec dolor id eros interdum dignissim quis feugiat orci.</p>
+				<Card>
+					<List/>
+				</Card>
 
-				<p>Sed et aliquam lorem, vel venenatis justo. Maecenas placerat neque feugiat, commodo ex at, interdum justo. Etiam tincidunt arcu sed congue commodo. Aliquam non justo et augue eleifend luctus eget nec velit. Duis vitae ipsum metus. Pellentesque blandit laoreet libero at consectetur. Duis posuere arcu sed hendrerit scelerisque. Etiam accumsan, odio sit amet cursus efficitur, enim diam varius odio, ut ultricies arcu diam in mi. Nam pellentesque, metus ut ultrices rhoncus, sapien sapien elementum purus, vel pellentesque justo neque eget justo. Integer at turpis vitae ligula posuere vehicula. Donec molestie est at congue ultrices. Cras sed lectus sit amet nisl maximus fermentum in vitae neque. Suspendisse potenti. Duis vulputate purus eu lacinia eleifend. Nam a pretium justo, vel vestibulum odio. Maecenas nunc diam, viverra vitae blandit et, pretium a mi.</p>
+				<textarea cols="50" rows="5" ref="dataChannelSend" disabled
+					placeholder="Press Start, enter some text, then press Send."></textarea>
+				<textarea cols="50" rows="5" ref="dataChannelReceive" disabled></textarea>
 
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat arcu vitae metus interdum sodales. Nunc nulla leo, porttitor nec neque id, dapibus feugiat massa. Suspendisse mattis ipsum ut tempus accumsan. Curabitur congue nunc ac erat aliquet, ac accumsan tortor eleifend. Praesent purus nisl, hendrerit eget justo vitae, tempus elementum orci. Vestibulum id arcu luctus, congue velit non, efficitur risus. Aliquam odio lectus, placerat ut eros vitae, condimentum mollis magna. Maecenas metus elit, vehicula interdum velit quis, scelerisque hendrerit erat. Suspendisse cursus, est nec luctus pellentesque, tellus ipsum consectetur purus, sit amet finibus lectus ipsum eget elit. Suspendisse nec dolor id eros interdum dignissim quis feugiat orci.</p>
+				<div ref="buttons">
+					<button style={{fontSize: '2em'}} ref="startButton">Start</button>
+					<button style={{fontSize: '2em'}} ref="sendButton">Send</button>
+					<button style={{fontSize: '2em'}} ref="closeButton">Stop</button>
+				</div>
+
+				<h2>Responses below</h2>
+				<div>
+					{this.state.responses.map(function(listValue, idx){
+						return <p key={idx}>{listValue}</p>;
+					})}
+				</div>
 			</main>
 		)
+	}
+	
+	componentDidMount() {
+		this.connection = new Connection({
+			dataChannelSend: this.refs.dataChannelSend,
+			dataChannelReceive: this.refs.dataChannelReceive,
+			startButton: this.refs.startButton,
+			sendButton: this.refs.sendButton,
+			closeButton: this.refs.closeButton,
+		})
+	}
+	componentWillUnmount() {
 	}
 }
 

@@ -1,0 +1,11 @@
+{
+  "name": "web-cards-signaler",
+  "version": "0.0.1",
+  "description": "Signaler for my thing",
+  "license": "ISC",
+  "dependencies": {
+    "node-static": "^0.7.9",
+    "socket.io": "^2.0.2",
+    "webrtc-adapter": "^4.0.0"
+  }
+}
